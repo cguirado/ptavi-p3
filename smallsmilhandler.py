@@ -22,6 +22,7 @@ class SmallSMILHandler(ContentHandler):
         if name == "root-layout":
         #valores de los atributos"
             self.width = attrs.get(width,"")
+            print(width)
             self.height = attrs.get(heigt,"")
             self.backgroundcolor = attrs.get(backgroundcolor,"")
         if name == "region":
@@ -42,3 +43,13 @@ class SmallSMILHandler(ContentHandler):
         if name == "textstream":
             self.src = attrs.get()
             self.regin = attrs.get()
+
+
+if __name__ == "__main__":
+    """
+    Programa principal
+    """
+    parser = make_parser()
+    cHandler = ChistesHandler()
+    parser.setContentHandler(cHandler)
+    parser.parse(open('karaoke.smil'))
