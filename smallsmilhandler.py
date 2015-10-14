@@ -25,7 +25,11 @@ class SmallSMILHandler(ContentHandler):
         self.region = ""
 
         self.tags = []
-
+        self.dicc = {"root-layout":['width', 'height', 'background-color'],
+                    "region":['id', 'top', 'left', 'bottom', 'right'],
+                    "img":['src', 'region', 'begin', 'dur'],
+                    "audio":['src', 'begin', 'dur'],
+                    "textstream":['src','region']}
 #No necesitamos endElement (solo tenemos principio de etiqueta)
     def startElement(self, name, attrs):
         if name == "root-layout":
