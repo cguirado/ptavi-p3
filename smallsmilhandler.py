@@ -32,6 +32,7 @@ class SmallSMILHandler(ContentHandler):
                     "textstream":['src','region']}
 #No necesitamos endElement (solo tenemos principio de etiqueta)
     def startElement(self, name, attrs):
+        """
         if name == "root-layout":
         #valores de los atributos"
             self.width = attrs.get('width',"")
@@ -66,6 +67,7 @@ class SmallSMILHandler(ContentHandler):
             self.region = attrs.get('region',"")
             tagtext = {"src": self.src, "region": self.region}
             self.tag.append([name,tagtext])
+        """
     def get_tags (self):
         return self.tags
 if __name__ == "__main__":
@@ -74,8 +76,6 @@ if __name__ == "__main__":
     """
     parser = make_parser()
     cHandler = SmallSMILHandler()
-    parser.setContentHandler(cHandler)
-
-    parser.parse(open('karaoke.smil'))
+    parser.setContentHandler(cHandler)parser.parse(open('karaoke.smil'))
     datos = cHandler.get_tags()
     print(datos)
