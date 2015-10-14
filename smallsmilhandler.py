@@ -29,12 +29,15 @@ class SmallSMILHandler(ContentHandler):
         if name == "root-layout":
         #valores de los atributos"
             self.width = attrs.get('width',"")
-            self.height = attrs.get('heigt',"")
-            self.backgroundcolor = attrs.get('backgroundcolor',"")
+            self.height = attrs.get('height',"")
+            self.backgroundcolor = attrs.get('background-color',"")
+            tagroot = {"width": self.width, "height": self.height, "background-color": self.backgroundcolor}
+            self.tags.append(tagroot)
+
         if name == "region":
             self.id = attrs.get('id',"")
             self.top = attrs.get('top',"")
-            self.botton = attrs.get('botton',"")
+            self.botton = attrs.get('bottom',"")
             self.left = attrs.get('left',"")
             self.right = attrs.get('right',"")
         if name == "img":
@@ -50,8 +53,8 @@ class SmallSMILHandler(ContentHandler):
             self.src = attrs.get('src',"")
             self.region = attrs.get('region',"")
     def get_tags (self):
-        tagroot = {"width": self.width, "height": self.height, "backgroundcolor": self.backgroundcolor}
-        tagregion= {"id": self.id, "top": self.top, "botton": self.botton, "left": self.left, "right": self.right}
+        tagroot = {"width": self.width, "height": self.height, "background-color": self.backgroundcolor}
+        tagregion= {"id": self.id, "top": self.top, "bottom": self.botton, "left": self.left, "right": self.right}
         tagimg = {"src": self.src_img, "region": self.region_img, "begin": self.begin_img, "dur":self.dur_img}
         tagaudio = {"src": self.src_audio, "begin": self.begin, "dur": self.dur}
         tagtext = {"src": self.src, "region": self.region}
@@ -64,6 +67,7 @@ if __name__ == "__main__":
     parser = make_parser()
     cHandler = SmallSMILHandler()
     parser.setContentHandler(cHandler)
-    datos = cHandler.get_tags()
+
     parser.parse(open('karaoke.smil'))
+    datos = cHandler.get_tags()
     print(datos)
