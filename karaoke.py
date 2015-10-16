@@ -10,11 +10,15 @@ from smallsmilhandler import SmallSMILHandler
 if __name__ == "__main__":
 
     comandos = sys.argv
+    parser = make_parser()
+    cHandler = SmallSMILHandler()
+    parser.setContentHandler(cHandler)
 
     print (comandos)
     print(len(comandos))
     if len(comandos) != 2:
         print ("Usage: python3 karaoke.py file.smil")
     else:
-        fichero = open(comandos[1],'r')
-        print(fichero)
+        parser.parse(open(comandos[1]))
+        datos = cHandler.get_tags()
+        print(datos)
