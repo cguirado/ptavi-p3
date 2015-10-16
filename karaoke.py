@@ -25,13 +25,13 @@ if __name__ == "__main__":
             #lo primero que queremos el nombre mas el \t
             name = linea[0] + '\T'
             atributos = "" #Luego iremos mentiendo elementos
-            #queremos es ir cogiendo los atributos tras coger el nombre e ir quitando blancos. lina[1] (diccionario) como anteriormente
+            #queremos es ir cogiendo los atributos tras coger el nombre e ir quitando blancos.
+            #lina[1] (diccionario) como anteriormente atributo (primera parte del atributo)
             for atributo in linea[1].keys():
                 if linea[1][atributo] != "":
-                    elemento = linea[1][atributo]
+                    elemento = linea[1][atributo]#sacamos el valor del atributo
                     atributos = atributos + atributo
-                    print (atributos)
-                    atributos = atributo + '=' + elemento + '\T'
-            total += name + atributos
-
-        #print (total)
+                    atributos += '=' + elemento + '\T' #Unimos mas cosas a nuestra lista
+                    #print(atributos)
+            total += name + atributos + '\n'#nombre mas atributo completo con su valor
+        print (total)
