@@ -10,7 +10,11 @@ from smallsmilhandler import SmallSMILHandler
 if __name__ == "__main__":
 
     comandos = sys.argv
+
     print (comandos)
     print(len(comandos))
     if len(comandos) != 2:
         print ("Usage: python3 karaoke.py file.smil")
+    else:
+        fichero = open(comandos[1],'r')
+        print(fichero)
