@@ -4,14 +4,14 @@
 import sys
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
- import SmallSMILHandler
+import smallsmilhandler
 
 
 if __name__ == "__main__":
 
     comandos = sys.argv
     parser = make_parser()
-    cHandler = SmallSMILHandler()
+    cHandler = smallsmilhandler.SmallSMILHandler()
     parser.setContentHandler(cHandler)
     self.datos = cHandler.get_tags()
     print(len(comandos))
