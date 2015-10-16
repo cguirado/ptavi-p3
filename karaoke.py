@@ -14,7 +14,7 @@ if __name__ == "__main__":
     cHandler = smallsmilhandler.SmallSMILHandler()
     parser.setContentHandler(cHandler)
 
-    print(len(comandos))
+    #print(len(comandos))
     if len(comandos) != 2:
         print ("Usage: python3 karaoke.py file.smil")
     else:
@@ -23,13 +23,13 @@ if __name__ == "__main__":
         total = ""
         for linea in datos:
             #lo primero que queremos el nombre mas el \t
-            name = linea[0] + '\t'
+            name = linea[0] + '\T'
             atributos = "" #Luego iremos mentiendo elementos
             #queremos es ir cogiendo los atributos tras coger el nombre e ir quitando blancos. lina[1] (diccionario) como anteriormente
             for atributo in linea[1].keys():
                 if linea[1][atributo] != "":
                     elemento = linea[1][atributo]
-                    atributos = atributo + elemento + "=" + "\t"
+                    atributos = atributo + '=' + elemento + '\T'
             total += name + atributos
 
         print (total)
