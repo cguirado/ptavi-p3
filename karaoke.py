@@ -29,7 +29,9 @@ if __name__ == "__main__":
             for atributo in linea[1].keys():
                 if linea[1][atributo] != "":
                     elemento = linea[1][atributo]
+                    atributos = atributos + atributo
+                    print (atributos)
                     atributos = atributo + '=' + elemento + '\T'
             total += name + atributos
 
-        print (total)
+        #print (total)
