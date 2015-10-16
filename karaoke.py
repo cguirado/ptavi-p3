@@ -14,7 +14,7 @@ if __name__ == "__main__":
     cHandler = smallsmilhandler.SmallSMILHandler()
     parser.setContentHandler(cHandler)
 
-    #print(len(comandos))
+
     if len(comandos) != 2:
         print ("Usage: python3 karaoke.py file.smil")
     else:
@@ -32,6 +32,5 @@ if __name__ == "__main__":
                     elemento = linea[1][atributo]#sacamos el valor del atributo
                     atributos = atributos + atributo
                     atributos += '=' + elemento + '\T' #Unimos mas cosas a nuestra lista
-                    #print(atributos)
-            total += name + atributos + '\n'#nombre mas atributo completo con su valor
+            total = name + atributos + '\n'#nombre mas atributo completo con su valor
         print (total)
