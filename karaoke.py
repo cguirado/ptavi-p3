@@ -40,5 +40,6 @@ if __name__ == "__main__":
             for atributo in linea[1].keys():
                 #print(atributo)
                 if atributo == "src":#ESto me lo hace bien
+                    #print(linea[1][atributo])
                     if linea[1][atributo] == "http://":
-                        print(linea[1].atributo)
+                        print("vale")
