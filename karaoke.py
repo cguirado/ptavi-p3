@@ -30,7 +30,15 @@ if __name__ == "__main__":
             for atributo in linea[1].keys():
                 if linea[1][atributo] != "":
                     elemento = linea[1][atributo]#sacamos el valor del atributo
+                    #print(elemento)
                     atributos = atributos + atributo
                     atributos += '=' + elemento + '\T' #Unimos mas cosas a nuestra lista
-            total = name + atributos + '\n'#nombre mas atributo completo con su valor
-        print (total)
+            total += name + atributos + '\n'#nombre mas atributo completo con su valor 2 listas diferentes
+        #print (total)
+
+        for linea in datos:
+            for atributo in linea[1].keys():
+                #print(atributo)
+                if atributo == "src":#ESto me lo hace bien
+                    if linea[1][atributo] == "http://":
+                        print(linea[1].atributo)
