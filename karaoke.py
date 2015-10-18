@@ -8,17 +8,16 @@ import smallsmilhandler
 import os
 
 
-class karaokeLocal():
+class KaraokeLocal():
     def __init__ (self):
         comandos = sys.argv
         parser = make_parser()
         cHandler = smallsmilhandler.SmallSMILHandler()
         parser.setContentHandler(cHandler)
+        parser.parse(open(comandos[1]))
         if len(comandos) != 2:
             print ("Usage: python3 karaoke.py file.smil")
-        else:
-            parser.parse(open(comandos[1]))
-            self.datos = cHandler.get_tags()
+        self.datos = cHandler.get_tags()
 
     def __str__(self):
         total = ""
@@ -31,10 +30,11 @@ class karaokeLocal():
                     atributos = atributos + atributo
                     atributos += '=' + elemento + '\T'
             total += name + atributos + '\n'
-        print (total)
+        return (total)
 
 if __name__ == "__main__":
-    karaoke =
+    karaoke = KaraokeLocal()
+    print (karaoke.__str__())
 
 
 
@@ -53,3 +53,4 @@ if __name__ == "__main__":
                     #print(linea[1][atributo].split('//'))
                     if linea[1][atributo].split(':')[0] == "http":
                         os.system( "wget -q" + linea[1][atributo])
+"""
