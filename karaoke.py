@@ -44,3 +44,4 @@ if __name__ == "__main__":
                     #print(linea[1][atributo].split('//'))
                     if linea[1][atributo].split(':')[0] == "http":
                         os.system( "wget -q" + linea[1][atributo])
+                        linea[1][atributo] = linea[1][atributo].split("/")[-1]
