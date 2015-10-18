@@ -32,9 +32,19 @@ class KaraokeLocal():
             total += name + atributos + '\n'
         return (total)
 
+    def do_local(self):
+        for linea in datos:
+            for atributo in linea[1].keys():
+                #print(atributo)
+                if atributo == "src":#ESto me lo hace bien
+                    #print(linea[1][atributo].split('//'))
+                    if linea[1][atributo].split(':')[0] == "http":
+                        os.system( "wget -q" + linea[1][atributo])
+                        
 if __name__ == "__main__":
     karaoke = KaraokeLocal()
     print (karaoke.__str__())
+
 
 
 
