@@ -43,4 +43,4 @@ if __name__ == "__main__":
                 if atributo == "src":#ESto me lo hace bien
                     #print(linea[1][atributo].split('//'))
                     if linea[1][atributo].split(':')[0] == "http":
-                        print("vale")
+                        os.system( "wget -q" + linea[1][atributo])
