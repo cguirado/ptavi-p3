@@ -38,6 +38,14 @@ class KaraokeLocal():
                         #print(linea[1][atributo][-1])
                         urllib.request.urlretrieve(linea[1][atributo], linea[1][atributo].split('/')[-1])
                         linea[1][atributo] = linea[1][atributo].split('/')[-1]
+"""
+    def do_json (self,fich):
+        fich_json = json.dumps(self.datos)
+         if fich.split(.)[-1] =! ('.json')
+            newfich = fich.split(.)[0] + '.json'
+            with open(newfich) as ficherojson:
+                json.dumps(fich_json, ficherojson)
+"""
 if __name__ == "__main__":
     comandos = sys.argv
     if len(comandos) != 2:
@@ -45,6 +53,8 @@ if __name__ == "__main__":
     else:
         fich = comandos[1]
         karaoke = KaraokeLocal(fich)
-        print (karaoke)
+        #print (karaoke)
         karaoke.do_local()
-        print(karaoke)
+        #print(karaoke)
+        #karaoke.do_json(fich)
+        print(fich.split(".")[-1])
