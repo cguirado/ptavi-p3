@@ -6,17 +6,19 @@ from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 import smallsmilhandler
 import urllib
+import json
 
 
 class KaraokeLocal():
-    def __init__ (self, fich):
+    def __init__(self, fich):
         parser = make_parser()
         cHandler = smallsmilhandler.SmallSMILHandler()
         parser.setContentHandler(cHandler)
         parser.parse(open(fich))
         self.datos = cHandler.get_tags()
 
-    def __str__(self):#Imprimir como pide
+    def __str__(self):
+        "Imprimir como pide"
         total = ""
         for linea in self.datos:
             name = linea[0] + '\t'
@@ -29,32 +31,30 @@ class KaraokeLocal():
             total += name + atributos + '\n'
         return (total)
 
-    def do_local(self):#Descargar
+    def do_local(self):
+        "Descargar"
         for linea in self.datos:
             for atributo in linea[1].keys():
-                if atributo == "src":#ESto me lo hace bien
-                    #print("vale")
+                if atributo == "src":
                     if linea[1][atributo].split(':')[0] == "http":
-                        #print(linea[1][atributo][-1])
                         urllib.request.urlretrieve(linea[1][atributo], linea[1][atributo].split('/')[-1])
                         linea[1][atributo] = linea[1][atributo].split('/')[-1]
-"""
-    def do_json (self,fich):
+
+    def do_json(self, fich):
         fich_json = json.dumps(self.datos)
-         if fich.split(.)[-1] =! ('.json')
-            newfich = fich.split(.)[0] + '.json'
-            with open(newfich) as ficherojson:
-                json.dumps(fich_json, ficherojson)
-"""
+        newfich = fich.split('.')[0] + '.json'
+        with open(newfich, 'w') as ficherojson:
+            json.dump(fich_json, ficherojson)
+
 if __name__ == "__main__":
     comandos = sys.argv
-    if len(comandos) != 2:
+    fich = comandos[-1]
+    if len(comandos) != 2 or fich.split('.')[-1] != 'smil':
         print ("Usage: python3 karaoke.py file.smil")
     else:
-        fich = comandos[1]
         karaoke = KaraokeLocal(fich)
-        #print (karaoke)
+        print (karaoke)
+        karaoke.do_json(fich)
         karaoke.do_local()
-        #print(karaoke)
-        #karaoke.do_json(fich)
-        print(fich.split(".")[-1])
+        karaoke.do_json("local.json")
+        print(karaoke)
