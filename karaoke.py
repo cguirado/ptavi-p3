@@ -7,14 +7,13 @@ from xml.sax.handler import ContentHandler
 import smallsmilhandler
 import urllib
 
-class KaraokeLocal():
-    def __init__ (self):
 
+class KaraokeLocal():
+    def __init__ (self, fich):
         parser = make_parser()
         cHandler = smallsmilhandler.SmallSMILHandler()
         parser.setContentHandler(cHandler)
-        parser.parse(open(comandos[1]))
-
+        parser.parse(open(fich))
         self.datos = cHandler.get_tags()
 
     def __str__(self):#Imprimir como pide
@@ -34,20 +33,18 @@ class KaraokeLocal():
         for linea in self.datos:
             for atributo in linea[1].keys():
                 if atributo == "src":#ESto me lo hace bien
+                    #print("vale")
                     if linea[1][atributo].split(':')[0] == "http":
-                        urllib.request.urlretrieve(linea[1][atributo],sys.argv[1])
-    """
-    def do_json(self):
-        principio = sys.argv[1].split('.')
-        if principio[-1] == 'smil'
-
-    """
+                        #print(linea[1][atributo][-1])
+                        urllib.request.urlretrieve(linea[1][atributo], linea[1][atributo].split('/')[-1])
+                        linea[1][atributo] = linea[1][atributo].split('/')[-1]
 if __name__ == "__main__":
     comandos = sys.argv
     if len(comandos) != 2:
         print ("Usage: python3 karaoke.py file.smil")
     else:
-        karaoke = KaraokeLocal()
+        fich = comandos[1]
+        karaoke = KaraokeLocal(fich)
         print (karaoke)
         karaoke.do_local()
         print(karaoke)
