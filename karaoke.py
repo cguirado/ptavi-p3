@@ -50,11 +50,11 @@ if __name__ == "__main__":
     comandos = sys.argv
     fich = comandos[-1]
     if len(comandos) != 2 or fich.split('.')[-1] != 'smil':
-        print ("Usage: python3 karaoke.py file.smil")
-    else:
-        karaoke = KaraokeLocal(fich)
-        print (karaoke)
-        karaoke.do_json(fich)
-        karaoke.do_local()
-        karaoke.do_json("local.json")
-        print(karaoke)
+        sys.exit("Usage: python3 karaoke.py file.smil")
+
+    karaoke = KaraokeLocal(fich)
+    print (karaoke)
+    karaoke.do_json(fich)
+    karaoke.do_local()
+    karaoke.do_json("local.json")
+    print(karaoke)
